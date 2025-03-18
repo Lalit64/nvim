@@ -1,3 +1,5 @@
+require("telescope").load_extension "ui-select"
+
 return {
   defaults = {
     sorting_strategy = "ascending",

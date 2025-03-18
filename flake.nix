@@ -1,6 +1,3 @@
-# Copyright (c) 2023 BirdeeHub
-# Licensed under the MIT license
-
 # This is an empty nixCats config.
 # you may import this template directly into your nvim folder
 # and then add plugins to categories here,
@@ -115,7 +112,6 @@
         gitPlugins = with pkgs.neovimPlugins; [ ];
         general = with pkgs.vimPlugins; [
           lazy-nvim
-          nvim-treesitter.withAllGrammars
           nvim-web-devicons
           nvchad-ui
           nvzone-volt
@@ -137,6 +133,7 @@
           nvim-tree-lua
           plenary-nvim
           telescope-nvim
+          telescope-ui-select-nvim
         ];
       };
 

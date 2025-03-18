@@ -5,7 +5,7 @@ return {
     "nvchad/ui",
     config = function()
       require "nvchad"
-    end
+    end,
   },
 
   {
@@ -22,17 +22,24 @@ return {
     "nvim-tree/nvim-tree.lua",
     cmd = { "NvimTreeToggle", "NvimTreeFocus" },
     lazy = false,
-    config = function ()
-      require("nvim-tree").setup({
+    config = function()
+      require("nvim-tree").setup {
         disable_netrw = true,
         hijack_netrw = true,
+        hijack_cursor = true,
+        view = {
+          width = {
+            min = 36,
+            max = 36,
+          },
+        },
         actions = {
           open_file = {
-            resize_window = false
-          }
+            resize_window = false,
+          },
         },
-      })
-    end
+      }
+    end,
   },
 
   {
@@ -86,9 +93,7 @@ return {
     },
     -- made opts a function cuz cmp config calls cmp module
     -- and we lazyloaded cmp so we dont want that file to be read on startup!
-    opts = function()
-      return require "plugins.configs.cmp"
-    end,
+    opts = require "plugins.configs.cmp",
   },
 
   {
@@ -134,5 +139,35 @@ return {
     "lewis6991/gitsigns.nvim",
     event = { "BufReadPre", "BufNewFile" },
     opts = {},
+  },
+
+  -- whichkey
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    opts = require "plugins.configs.which-key",
+  },
+
+  -- notifications
+  {
+    "j-hui/fidget.nvim",
+    opts = {
+      notification = {
+        window = {
+          winblend = 0,
+        },
+      },
+    },
+  },
+
+  -- snacks.nvim
+  {
+    "folke/snacks.nvim",
+    priority = 1000,
+    lazy = false,
+    opts = {
+      input = { enabled = true },
+      zen = { enabled = true },
+    },
   },
 }

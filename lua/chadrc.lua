@@ -10,14 +10,26 @@ M.ui = {
     icons_left = true,
   },
 
+  tabufline = {
+    enabled = true,
+    lazyload = false,
+  },
+
   statusline = {
     enabled = true,
     theme = "default",
     separator_style = "arrow",
   },
 
-  nvdash = {
-    load_on_startup = true,
+  term = {
+    float = {
+      width = 0.75,
+      height = 0.5,
+    },
+  },
+
+  lsp = {
+    signature = false,
   },
 }
 
