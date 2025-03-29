@@ -51,7 +51,6 @@ Below is the list of some very important plugins which I think should be must fo
 | nvim-tree.lua           | File tree                                    |
 | Nvim-web-devicons       | Icons provider                               |
 | nvim-treesitter         | Configure treesitter                         |
-| bufferline.nvim         | Tab + bufferline plugin                      |
 | nvim-cmp                | Autocompletion                               |
 | Luasnip & friendly snippets               | Snippets                                      |
 | mason.nvim              | Download binaries of various lsps, formatters, debuggers, etc. |

@@ -160,14 +160,21 @@ return {
     },
   },
 
-  -- snacks.nvim
+  -- better ui
   {
-    "folke/snacks.nvim",
-    priority = 1000,
-    lazy = false,
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+    },
+    opts = require "plugins.configs.noice",
+  },
+
+  {
+    "rcarriga/nvim-notify",
     opts = {
-      input = { enabled = true },
-      zen = { enabled = true },
+      background_colour = "#00000000",
+      render = "compact",
     },
   },
 }

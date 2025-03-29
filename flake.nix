@@ -130,7 +130,6 @@
           nvim-autopairs
           nvim-cmp
           nvim-lspconfig
-          nvim-tree-lua
           plenary-nvim
           telescope-nvim
           telescope-ui-select-nvim
