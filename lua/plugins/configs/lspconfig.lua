@@ -49,13 +49,61 @@ lspconfig.lua_ls.setup {
   capabilities = capabilities,
   settings = {
     Lua = {
-      diagnostics = { globals = { "vim" } },
+      workspace = {
+        checkThirdParty = false,
+      },
+      codeLens = {
+        enable = true,
+      },
+      completion = {
+        callSnippet = "Replace",
+      },
+      doc = {
+        privateName = { "^_" },
+      },
+      hint = {
+        enable = true,
+        setType = false,
+        paramType = true,
+        paramName = "Disable",
+        semicolon = "Disable",
+        arrayIndex = "Disable",
+      },
+      runtime = { version = "LuaJIT" },
+      formatters = {
+        ignoreComments = true,
+      },
+      signatureHelp = { enabled = true },
+      diagnostics = {
+        globals = { "nixCats", "vim" },
+        disable = { "missing-fields" },
+      },
+      telemetry = { enabled = false },
+    },
+  },
+}
+
+lspconfig.nixd.setup {
+  cmd = { "nixd" },
+  settings = {
+    nixd = {
+      nixpkgs = {
+        expr = "import <nixpkgs> { }",
+      },
+      formatting = {
+        command = { "nixfmt" },
+      },
+      options = {
+        home_manager = {
+          expr = '(builtins.getFlake "/Users/lalit/.config/snowflake").homeConfigurations."lalit@lalits-mbp".options',
+        },
+      },
     },
   },
 }
 
 -- setup multiple servers with same default options
-local servers = { "ts_ls", "html", "cssls", "rust_analyzer", "nixd", "svelte", "astro" }
+local servers = { "ts_ls", "html", "cssls", "rust_analyzer", "svelte", "astro" }
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
