@@ -22,7 +22,11 @@ vim.opt.rtp:prepend(lazypath)
 
 local plugins = require "plugins"
 
-require("nixCatsUtils.lazyCat").setup(nixCats.pawsible({ "allPlugins", "start", "lazy.nvim" }), plugins, require "lazy_config")
+require("nixCatsUtils.lazyCat").setup(
+  nixCats.pawsible { "allPlugins", "start", "lazy.nvim" },
+  plugins,
+  require "lazy_config"
+)
 
 for _, v in ipairs(vim.fn.readdir(vim.g.base46_cache)) do
   dofile(vim.g.base46_cache .. v)

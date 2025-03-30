@@ -17,6 +17,7 @@ return {
   },
   "nvzone/volt", -- optional, needed for theme switcher
   "nvzone/typr", -- optional, typing test
+  "nvzone/menu",
 
   {
     "nvim-tree/nvim-tree.lua",
@@ -49,7 +50,7 @@ return {
 
   {
     "nvim-treesitter/nvim-treesitter",
-    build = require('nixCatsUtils').lazyAdd(":TSUpdate"),
+    build = require("nixCatsUtils").lazyAdd ":TSUpdate",
     config = function()
       require "plugins.configs.treesitter"
     end,
