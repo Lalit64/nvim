@@ -113,19 +113,27 @@
         general = with pkgs.vimPlugins; [
           lazy-nvim
           nvim-web-devicons
-          nvchad-ui
-          nvzone-volt
-          nvzone-typr
+          { name = "ui"; plugin = nvchad-ui; }
+          { name = "volt"; plugin = nvzone-volt; }
+          { name = "typr"; plugin = nvzone-typr; }
+          which-key-nvim
           base46
           cmp-buffer
           cmp-nvim-lsp
+          cmp-nvim-lua
+          (nvim-treesitter.withPlugins (_: nvim-treesitter.allGrammars))
           cmp-path
           cmp_luasnip
           conform-nvim
           friendly-snippets
           gitsigns-nvim
           indent-blankline-nvim
-          luasnip
+          fidget-nvim
+          noice-nvim
+          nui-nvim
+          nvim-notify
+          nvim-tree-lua
+          { name = "LuaSnip"; plugin = luasnip; }
           mason-nvim
           nvim-autopairs
           nvim-cmp

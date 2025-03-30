@@ -1,5 +1,5 @@
 require("nvim-treesitter.configs").setup {
-  ensure_installed = {
+  ensure_installed = require('nixCatsUtils').lazyAdd({
     "lua",
     "vim",
     "vimdoc",
@@ -11,7 +11,9 @@ require("nvim-treesitter.configs").setup {
     "rust",
     "astro",
     "nix",
-  },
+  }),
+
+  auto_install = not require('nixCatsUtils').isNixCats,
 
   highlight = {
     enable = true,

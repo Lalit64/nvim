@@ -49,7 +49,7 @@ return {
 
   {
     "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
+    build = require('nixCatsUtils').lazyAdd(":TSUpdate"),
     config = function()
       require "plugins.configs.treesitter"
     end,
