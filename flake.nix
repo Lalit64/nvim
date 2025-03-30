@@ -211,7 +211,6 @@
           wrapRc = true;
           # IMPORTANT:
           # your alias may not conflict with your other packages.
-          configDirName = "TESTING";
           aliases = [ "vim" ];
           # neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
         };
