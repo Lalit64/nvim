@@ -1,29 +1,13 @@
-# This is an empty nixCats config.
-# you may import this template directly into your nvim folder
-# and then add plugins to categories here,
-# and call the plugins with their default functions
-# within your lua, rather than through the nvim package manager's method.
-# Use the help, and the example config github:BirdeeHub/nixCats-nvim?dir=templates/example
-
-# It allows for easy adoption of nix,
-# while still providing all the extra nix features immediately.
-# Configure in lua, check for a few categories, set a few settings,
-# output packages with combinations of those categories and settings.
-
-# All the same options you make here will be automatically exported in a form available
-# in home manager and in nixosModules, as well as from other flakes.
-# each section is tagged with its relevant help section.
-
 {
-  description = "A Lua-natic's neovim flake, with extra cats! nixCats!";
+  description = "My neovim flake using nixCats";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
 
-    # neovim-nightly-overlay = {
-    #   url = "github:nix-community/neovim-nightly-overlay";
-    # };
+    neovim-nightly-overlay = {
+      url = "github:nix-community/neovim-nightly-overlay";
+    };
 
     # see :help nixCats.flake.inputs
     # If you want your plugin to be loaded by the standard overlay,
@@ -115,6 +99,7 @@
             general = with pkgs; [
               nixd
               nix-doc
+              stdenv.cc.cc
               typescript-language-server
               lua-language-server
               svelte-language-server
@@ -131,24 +116,12 @@
             general = with pkgs.vimPlugins; [
               lazy-nvim
               nvim-web-devicons
-              {
-                name = "ui";
-                plugin = nvchad-ui;
-              }
-              {
-                name = "volt";
-                plugin = nvzone-volt;
-              }
-              {
-                name = "typr";
-                plugin = nvzone-typr;
-              }
-              {
-                name = "menu";
-                plugin = nvzone-menu;
-              }
               which-key-nvim
-              base46
+              bufferline-nvim
+              {
+                name = "catppuccin";
+                plugin = catppuccin-nvim;
+              }
               cmp-buffer
               cmp-nvim-lsp
               cmp-nvim-lua
@@ -159,7 +132,9 @@
               friendly-snippets
               gitsigns-nvim
               indent-blankline-nvim
-              fidget-nvim
+              lazydev-nvim
+              lualine-nvim
+              mini-surround
               noice-nvim
               nui-nvim
               nvim-notify
@@ -173,8 +148,10 @@
               nvim-cmp
               nvim-lspconfig
               plenary-nvim
+              snacks-nvim
               telescope-nvim
               telescope-ui-select-nvim
+              toggleterm-nvim
             ];
           };
 
@@ -246,7 +223,7 @@
               # IMPORTANT:
               # your alias may not conflict with your other packages.
               aliases = [ "vim" ];
-              # neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
+              neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
             };
             # and a set of categories that you want
             # (and other information to pass to lua)

@@ -2,8 +2,6 @@ require "options"
 require "mappings"
 require "commands"
 
-vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46_cache/"
-
 -- bootstrap plugins & lazy.nvim
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim" -- path where its going to be installed
 
@@ -27,7 +25,3 @@ require("nixCatsUtils.lazyCat").setup(
   plugins,
   require "lazy_config"
 )
-
-for _, v in ipairs(vim.fn.readdir(vim.g.base46_cache)) do
-  dofile(vim.g.base46_cache .. v)
-end

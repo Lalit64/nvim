@@ -2,24 +2,6 @@ return {
   { lazy = true, "nvim-lua/plenary.nvim" },
 
   {
-    "nvchad/ui",
-    config = function()
-      require "nvchad"
-    end,
-  },
-
-  {
-    "nvchad/base46",
-    lazy = true,
-    build = function()
-      require("base46").load_all_highlights()
-    end,
-  },
-  "nvzone/volt", -- optional, needed for theme switcher
-  "nvzone/typr", -- optional, typing test
-  "nvzone/menu",
-
-  {
     "nvim-tree/nvim-tree.lua",
     cmd = { "NvimTreeToggle", "NvimTreeFocus" },
     lazy = false,
@@ -44,6 +26,29 @@ return {
   },
 
   {
+    "akinsho/bufferline.nvim",
+    event = "VeryLazy",
+    keys = {
+      { "<leader>bp", "<Cmd>BufferLineTogglePin<CR>", desc = "Toggle Pin" },
+    },
+    opts = require "plugins.configs.bufferline",
+  },
+
+  {
+    "nvim-lualine/lualine.nvim",
+    event = "VeryLazy",
+    init = function()
+      vim.g.lualine_laststatus = vim.o.laststatus
+      if vim.fn.argc(-1) > 0 then
+        vim.o.statusline = " "
+      else
+        vim.o.laststatus = 0
+      end
+    end,
+    opts = require "plugins.configs.lualine",
+  },
+
+  {
     "nvim-tree/nvim-web-devicons",
     opts = {},
   },
@@ -55,6 +60,21 @@ return {
       require "plugins.configs.treesitter"
     end,
   },
+
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 3000,
+    config = function()
+      require("catppuccin").setup {
+        flavour = "mocha",
+        transparent_background = true,
+      }
+
+      vim.cmd [[ colorscheme catppuccin ]]
+    end,
+  },
+
   -- we use cmp plugin only when in insert mode
   -- so lets lazyload it at InsertEnter event, to know all the events check h-events
   -- completion , now all of these plugins are dependent on cmp, we load them after cmp
@@ -98,6 +118,14 @@ return {
   },
 
   {
+    "echasnovski/mini.surround",
+    version = false,
+    config = function()
+      require("mini.surround").setup()
+    end,
+  },
+
+  {
     "williamboman/mason.nvim",
     build = ":MasonUpdate",
     cmd = { "Mason", "MasonInstall" },
@@ -107,6 +135,18 @@ return {
   {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+      {
+        "folke/lazydev.nvim",
+        ft = "lua",
+        opts = {
+          library = {
+            -- adds type hints for nixCats global
+            { path = (nixCats.nixCatsPath or "") .. "/lua", words = { "nixCats" } },
+          },
+        },
+      },
+    },
     config = function()
       require "plugins.configs.lspconfig"
     end,
@@ -149,33 +189,34 @@ return {
     opts = require "plugins.configs.which-key",
   },
 
-  -- notifications
-  {
-    "j-hui/fidget.nvim",
-    opts = {
-      notification = {
-        window = {
-          winblend = 0,
-        },
-      },
-    },
-  },
-
   -- better ui
   {
     "folke/noice.nvim",
     event = "VeryLazy",
     dependencies = {
       "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
     },
     opts = require "plugins.configs.noice",
   },
 
+  -- utilities via snacks
   {
-    "rcarriga/nvim-notify",
+    "folke/snacks.nvim",
     opts = {
-      background_colour = "#00000000",
-      render = "compact",
+      indent = { enabled = true },
+      input = { enabled = true },
+      notifier = { enabled = true },
+      scope = { enabled = true },
+      scroll = { enabled = true },
+      statuscolumn = { enabled = true }, -- we set this in options.lua
+      words = { enabled = true },
     },
+  },
+
+  {
+    "akinsho/toggleterm.nvim",
+    version = "*",
+    opts = require "plugins.configs.toggleterm",
   },
 }
