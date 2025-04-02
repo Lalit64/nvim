@@ -5,24 +5,7 @@ return {
     "nvim-tree/nvim-tree.lua",
     cmd = { "NvimTreeToggle", "NvimTreeFocus" },
     lazy = false,
-    config = function()
-      require("nvim-tree").setup {
-        disable_netrw = true,
-        hijack_netrw = true,
-        hijack_cursor = true,
-        view = {
-          width = {
-            min = 36,
-            max = 36,
-          },
-        },
-        actions = {
-          open_file = {
-            resize_window = false,
-          },
-        },
-      }
-    end,
+    opts = require "plugins.configs.nvim-tree",
   },
 
   {
@@ -65,14 +48,7 @@ return {
     "catppuccin/nvim",
     name = "catppuccin",
     priority = 3000,
-    config = function()
-      require("catppuccin").setup {
-        flavour = "mocha",
-        transparent_background = true,
-      }
-
-      vim.cmd [[ colorscheme catppuccin ]]
-    end,
+    config = require "plugins.configs.catppuccin",
   },
 
   -- we use cmp plugin only when in insert mode
@@ -203,15 +179,9 @@ return {
   -- utilities via snacks
   {
     "folke/snacks.nvim",
-    opts = {
-      indent = { enabled = true },
-      input = { enabled = true },
-      notifier = { enabled = true },
-      scope = { enabled = true },
-      scroll = { enabled = true },
-      statuscolumn = { enabled = true }, -- we set this in options.lua
-      words = { enabled = true },
-    },
+    opts = require "plugins.configs.snacks",
+    priority = 1000,
+    lazy = false,
   },
 
   {

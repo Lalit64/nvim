@@ -1,6 +1,6 @@
 require("telescope").load_extension "ui-select"
 
-return {
+local M = {
   defaults = {
     sorting_strategy = "ascending",
     layout_config = {
@@ -8,3 +8,5 @@ return {
     },
   },
 }
+
+return M

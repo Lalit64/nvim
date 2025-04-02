@@ -1,4 +1,4 @@
-return {
+local M = {
   options = {
     close_command = function(n)
       Snacks.bufdelete(n)
@@ -7,7 +7,7 @@ return {
       Snacks.bufdelete(n)
     end,
     diagnostics = "nvim_lsp",
-    always_show_bufferline = true,
+    always_show_bufferline = false,
     show_tab_indicators = false,
     separator_style = { " ", " " },
     indicator = {
@@ -29,3 +29,5 @@ return {
     },
   },
 }
+
+return M

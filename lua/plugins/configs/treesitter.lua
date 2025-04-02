@@ -1,5 +1,7 @@
+local M = {}
+
 require("nvim-treesitter.configs").setup {
-  ensure_installed = require('nixCatsUtils').lazyAdd({
+  ensure_installed = require("nixCatsUtils").lazyAdd {
     "lua",
     "vim",
     "vimdoc",
@@ -11,9 +13,9 @@ require("nvim-treesitter.configs").setup {
     "rust",
     "astro",
     "nix",
-  }),
+  },
 
-  auto_install = not require('nixCatsUtils').isNixCats,
+  auto_install = not require("nixCatsUtils").isNixCats,
 
   highlight = {
     enable = true,
@@ -21,3 +23,5 @@ require("nvim-treesitter.configs").setup {
   },
   indent = { enable = true },
 }
+
+return M

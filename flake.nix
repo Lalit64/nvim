@@ -147,6 +147,10 @@
               nvim-autopairs
               nvim-cmp
               nvim-lspconfig
+              {
+                name = "lspkind";
+                plugin = lspkind-nvim;
+              }
               plenary-nvim
               snacks-nvim
               telescope-nvim

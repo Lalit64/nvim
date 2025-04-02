@@ -59,6 +59,9 @@ map("n", "<leader>re", "<cmd>NvimTreeResize 36<CR>", { desc = "nvimtree resize w
 -- telescope
 map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", { desc = "telescope live grep" })
 map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "telescope find buffers" })
+map("n", "<leader>fc", function()
+  Snacks.dashboard.pick("files", { cwd = vim.fn.stdpath "config" })
+end, { desc = "telescope find config" })
 map("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "telescope help page" })
 map("n", "<leader>ma", "<cmd>Telescope marks<CR>", { desc = "telescope find marks" })
 map("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>", { desc = "telescope find oldfiles" })

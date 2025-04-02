@@ -1,4 +1,4 @@
-return {
+local M = {
   open_mapping = [[<C-t>]],
   direction = "float",
   float_opts = {
@@ -18,3 +18,5 @@ return {
     title_pos = "left",
   },
 }
+
+return M

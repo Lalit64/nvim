@@ -1,4 +1,4 @@
-return {
+local M = {
   lsp = {
     override = {
       ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
@@ -25,3 +25,5 @@ return {
     long_message_to_split = true,
   },
 }
+
+return M
