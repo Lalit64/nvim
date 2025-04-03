@@ -131,7 +131,6 @@
               conform-nvim
               friendly-snippets
               gitsigns-nvim
-              indent-blankline-nvim
               lazydev-nvim
               lualine-nvim
               mini-surround
@@ -151,6 +150,7 @@
                 name = "lspkind";
                 plugin = lspkind-nvim;
               }
+              flash-nvim
               plenary-nvim
               snacks-nvim
               telescope-nvim

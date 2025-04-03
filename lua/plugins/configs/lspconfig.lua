@@ -115,8 +115,17 @@ else
   }
 end
 
-local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
-for type, icon in pairs(signs) do
-  local hl = "DiagnosticSign" .. type
-  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-end
+local lspsigns = { Error = "", Warn = "", Hint = "", Info = "" }
+vim.diagnostic.config {
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = lspsigns.Error,
+      [vim.diagnostic.severity.WARN] = lspsigns.Warn,
+      [vim.diagnostic.severity.HINT] = lspsigns.Hint,
+      [vim.diagnostic.severity.INFO] = lspsigns.Info,
+    },
+  },
+  virtual_text = {
+    prefix = "󱓻 ",
+  },
+}

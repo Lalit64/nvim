@@ -5,7 +5,24 @@ return {
     "nvim-tree/nvim-tree.lua",
     cmd = { "NvimTreeToggle", "NvimTreeFocus" },
     lazy = false,
-    opts = require "plugins.configs.nvim-tree",
+    config = function()
+      require("nvim-tree").setup {
+        disable_netrw = true,
+        hijack_netrw = true,
+        hijack_cursor = true,
+        view = {
+          width = {
+            min = 36,
+            max = 36,
+          },
+        },
+        actions = {
+          open_file = {
+            resize_window = false,
+          },
+        },
+      }
+    end,
   },
 
   {
@@ -48,7 +65,14 @@ return {
     "catppuccin/nvim",
     name = "catppuccin",
     priority = 3000,
-    config = require "plugins.configs.catppuccin",
+    config = function()
+      require("catppuccin").setup {
+        flavour = "mocha",
+        transparent_background = true,
+      }
+
+      vim.cmd [[ colorscheme catppuccin ]]
+    end,
   },
 
   -- we use cmp plugin only when in insert mode
@@ -134,17 +158,6 @@ return {
     opts = require "plugins.configs.conform",
   },
 
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    config = function()
-      require("ibl").setup {
-        indent = { char = "│" },
-        scope = { char = "│", highlight = "Comment" },
-      }
-    end,
-  },
-
   -- files finder etc
   {
     "nvim-telescope/telescope.nvim",
@@ -180,13 +193,62 @@ return {
   {
     "folke/snacks.nvim",
     opts = require "plugins.configs.snacks",
-    priority = 1000,
-    lazy = false,
   },
 
   {
     "akinsho/toggleterm.nvim",
     version = "*",
     opts = require "plugins.configs.toggleterm",
+  },
+
+  {
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    config = function()
+      vim.keymap.set("n", "f", "<Nop>", { noremap = true, silent = true })
+      vim.keymap.set("n", "F", "<Nop>", { noremap = true, silent = true })
+    end,
+    keys = {
+      {
+        "s",
+        mode = { "n", "x", "o" },
+        function()
+          require("flash").jump()
+        end,
+        desc = "Flash",
+      },
+      {
+        "S",
+        mode = { "n", "x", "o" },
+        function()
+          require("flash").treesitter()
+        end,
+        desc = "Flash Treesitter",
+      },
+      {
+        "r",
+        mode = "o",
+        function()
+          require("flash").remote()
+        end,
+        desc = "Remote Flash",
+      },
+      {
+        "R",
+        mode = { "o", "x" },
+        function()
+          require("flash").treesitter_search()
+        end,
+        desc = "Treesitter Search",
+      },
+      {
+        "<c-s>",
+        mode = { "c" },
+        function()
+          require("flash").toggle()
+        end,
+        desc = "Toggle Flash Search",
+      },
+    },
   },
 }
