@@ -1,60 +1,26 @@
-# TinyVim
-- Minimal Neovim config meant to be a starting point for new neovim users.
+# TinyVim + nixCats
+- Minimal neovim config using TinyVim as the base and nixCats for nix and home-manager integration
+- This also contains some of my personal tweaks
 
-![2023-09-26-133901_2560x1440_scrot](https://github.com/NvChad/tinyvim/assets/59060246/ce143ca2-07f1-4d54-971d-0f8304c50b58)
+![screenshot](https://files.catbox.moe/og74qg.png)
 
 # Install
-- Linux or MacOS
-```bash
-git clone https://github.com/NvChad/tinyvim ~/.config/nvim && nvim
+- This is not meant to be used without nix, but I am pretty sure it works ok.
+
+1. In your `flake.nix`
+```nix
+{
+    inputs = {
+        neovim.url = "git+ssh://git@github.com/lalit64/nvim.git";
+        neovim.inputs.nixpkgs.follows = "nixpkgs";
+    }
+}
 ```
-
-Run `:MasonInstallAll` command after lazy.nvim finishes downloading plugins
-
-- Windows
-```bash
-git clone https://github.com/NvChad/tinyvim $HOME\AppData\Local\nvim --depth 1 && nvim
+2. Use the home-manager module by including it in the imports like this:
+```nix
+imports = [
+    inputs.neovim.homeModules.default
+    { neovim.enable = true }
+];
 ```
-
-Run `:MasonInstallAll` command after lazy.nvim finishes downloading plugins
-
-# Reset
-```bash
-rm -rf ~/.local/share/nvim && rm -rf ~/.config/nvim/lazy-lock.json
-```
-
-# Dir structure
-```bash
-├── init.lua
-├── lua
-    ├── commands.lua
-    ├── mappings.lua
-    ├── options.lua
-    └── plugins
-        ├── init.lua
-        ├── configs
-            ├── cmp.lua
-            ├── telescope.lua
-            └── ( more ... )
-```
-
-# About
-- Dont expect this config to be beautiful or blazing fast (no hardcore lazyloading is done)! 
-- I'm just using some plugins with their default configs
-- This config only uses only lesser plugins which I think are important for any config.
-
-# Important Plugins used
-Below is the list of some very important plugins which I think should be must for any neovim config.
-
-| Name             | Description                                  |
-|-------------------------|----------------------------------------------|
-| nvim-tree.lua           | File tree                                    |
-| Nvim-web-devicons       | Icons provider                               |
-| nvim-treesitter         | Configure treesitter                         |
-| nvim-cmp                | Autocompletion                               |
-| Luasnip & friendly snippets               | Snippets                                      |
-| mason.nvim              | Download binaries of various lsps, formatters, debuggers, etc. |
-| gitsigns.nvim                | Git-related features                         |
-| comment.nvim            | Commenting                                   |
-| telescope.nvim          | Fuzzy finder                                 |
-| conform.nvim            | Formatter                                    |
+Make sure you don't have neovim or vim installed

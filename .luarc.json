@@ -1,3 +1,7 @@
 {
-    "runtime.unicodeName": true
+    "runtime.unicodeName": true,
+    "diagnostics.disable": [
+        "missing-fields",
+        "undefined-field"
+    ]
 }
