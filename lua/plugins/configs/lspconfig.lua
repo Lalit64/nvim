@@ -24,9 +24,24 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+capabilities = vim.tbl_deep_extend("force", capabilities, require("blink.cmp").get_lsp_capabilities())
+capabilities.textDocument.foldingRange = {
+  dynamicRegistration = false,
+  lineFoldingOnly = true,
+}
 
-local servers = {}
+local servers = {
+  rust_analyzer = {},
+  astro = {},
+  svelte = {},
+  pyright = {},
+  cmake = {},
+  cssls = {},
+  emmet_ls = {},
+  gopls = {},
+  tailwindcss = {},
+  html = {},
+}
 
 if require("nixCatsUtils").isNixCats then
   servers.nixd = {}
@@ -68,6 +83,44 @@ servers.lua_ls = {
         disable = { "missing-fields" },
       },
       telemetry = { enabled = false },
+    },
+  },
+}
+
+servers.vtsls = {
+  filetypes = {
+    "javascript",
+    "javascriptreact",
+    "javascript.jsx",
+    "typescript",
+    "typescriptreact",
+    "typescript.tsx",
+  },
+  settings = {
+    complete_function_calls = true,
+    vtsls = {
+      enableMoveToFileCodeAction = true,
+      autoUseWorkspaceTsdk = true,
+      experimental = {
+        maxInlayHintLength = 30,
+        completion = {
+          enableServerSideFuzzyMatch = true,
+        },
+      },
+    },
+    typescript = {
+      updateImportsOnFileMove = { enabled = "always" },
+      suggest = {
+        completeFunctionCalls = true,
+      },
+      inlayHints = {
+        enumMemberValues = { enabled = true },
+        functionLikeReturnTypes = { enabled = true },
+        parameterNames = { enabled = "literals" },
+        parameterTypes = { enabled = true },
+        propertyDeclarationTypes = { enabled = true },
+        variableTypes = { enabled = false },
+      },
     },
   },
 }

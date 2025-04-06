@@ -1,4 +1,5 @@
 local M = {
+  -- highlights = require("catppuccin.groups.integrations.bufferline").get {},
   options = {
     close_command = function(n)
       Snacks.bufdelete(n)
@@ -7,7 +8,7 @@ local M = {
       Snacks.bufdelete(n)
     end,
     diagnostics = "nvim_lsp",
-    always_show_bufferline = false,
+    always_show_bufferline = true,
     show_tab_indicators = false,
     separator_style = { " ", " " },
     indicator = {
@@ -21,7 +22,7 @@ local M = {
     color_icons = true,
     offsets = {
       {
-        filetype = "NvimTree",
+        filetype = "neo-tree",
         text = " Files",
         highlight = "Directory",
         text_align = "left",

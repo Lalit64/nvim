@@ -51,10 +51,9 @@ end, { desc = "buffer close" })
 map("n", "<leader>/", "gcc", { desc = "toggle comment", remap = true })
 map("v", "<leader>/", "gc", { desc = "toggle comment", remap = true })
 
--- nvimtree
-map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree toggle window" })
-map("n", "<leader>E", "<cmd>NvimTreeFocus<CR>", { desc = "nvimtree focus window" })
-map("n", "<leader>re", "<cmd>NvimTreeResize 36<CR>", { desc = "nvimtree resize window" })
+-- neotree
+map("n", "<leader>e", "<cmd>Neotree toggle<CR>", { desc = "nvimtree toggle window" })
+map("n", "<leader>E", "<cmd>Neotree focus<CR>", { desc = "nvimtree focus window" })
 
 -- telescope
 map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", { desc = "telescope live grep" })
@@ -87,3 +86,6 @@ end, { desc = "whichkey query lookup" })
 map("n", "<leader>lg", function()
   Snacks.lazygit.open()
 end, { desc = "lazygit" })
+
+-- lsp rename
+vim.keymap.set("n", "<leader>rn", "<cmd>IncRename<CR>")

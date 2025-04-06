@@ -1,96 +1,82 @@
-local lspkind = require "lspkind"
-
-local lsp_kinds = {
-  Class = " ",
-  Color = " ",
-  Constant = " ",
-  Constructor = " ",
-  Enum = " ",
-  EnumMember = " ",
-  Event = " ",
-  Field = " ",
-  File = " ",
-  Folder = " ",
-  Function = " ",
-  Interface = " ",
-  Keyword = " ",
-  Method = " ",
-  Module = " ",
-  Operator = " ",
-  Property = " ",
-  Reference = " ",
-  Snippet = " ",
-  Struct = " ",
-  Text = " ",
-  TypeParameter = " ",
-  Unit = " ",
-  Value = " ",
-  Variable = " ",
-}
-
-local cmp = require "cmp"
-
+---@module 'blink.cmp'
+---@type blink.cmp.Config
 local M = {
-  snippet = {
-    expand = function(args)
-      require("luasnip").lsp_expand(args.body)
-    end,
+  keymap = { preset = "enter" },
+  appearance = {
+    kind_icons = {
+      Text = "󰉿",
+      Method = "",
+      Function = "󰊕",
+      Constructor = "󰒓",
+      Field = "",
+      Variable = "󰆦",
+      Property = "󰖷",
+      Class = "",
+      Interface = "",
+      Struct = "󱡠",
+      Module = "󰅩",
+      Unit = "󰪚",
+      Value = "",
+      Enum = "",
+      EnumMember = "",
+      Keyword = "",
+      Constant = "󰏿",
+      Snippet = "",
+      Color = "󰏘",
+      File = "󰈔",
+      Reference = "󰬲",
+      Folder = "󰉋",
+      Event = "󱐋",
+      Operator = "󰪚",
+      TypeParameter = "󰬛",
+      Error = "󰏭",
+      Warning = "",
+      Information = "󰋼",
+      Hint = "",
+    },
   },
-  mapping = cmp.mapping.preset.insert {
-    ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-    ["<C-f>"] = cmp.mapping.scroll_docs(4),
-    ["<C-Space>"] = cmp.mapping.complete(),
-    ["<C-e>"] = cmp.mapping.abort(),
-    ["<CR>"] = cmp.mapping.confirm { select = true },
+  completion = {
+    accept = {
+      auto_brackets = {
+        enabled = true,
+      },
+    },
+    menu = {
+      scrolloff = 0,
+      scrollbar = false,
+      draw = {
+        columns = {
+          { "label", gap = 10 },
+          { "kind_icon", gap = 1 },
+          { "kind" },
+          { "label_description" },
+        },
 
-    -- luasnip
-    ["<Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif require("luasnip").expand_or_jumpable() then
-        vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true), "")
-      else
-        fallback()
-      end
-    end, {
-      "i",
-      "s",
-    }),
-    ["<S-Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif require("luasnip").jumpable(-1) then
-        vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true), "")
-      else
-        fallback()
-      end
-    end, {
-      "i",
-      "s",
-    }),
+        gap = 1,
+        treesitter = { "lsp" },
+      },
+    },
+    documentation = {
+      auto_show = true,
+      auto_show_delay_ms = 200,
+      window = {
+        border = "single",
+      },
+    },
+    ghost_text = {
+      enabled = true,
+    },
   },
-  sources = cmp.config.sources {
-    { name = "nvim_lsp" },
-    { name = "luasnip" },
-    { name = "buffer" },
-    { name = "nvim_lua" },
-    { name = "path" },
-  },
-  formatting = {
-    format = function(entry, vim_item)
-      -- Add custom lsp_kinds icons
-      vim_item.kind = string.format("%s %s", lsp_kinds[vim_item.kind] or "", vim_item.kind)
-
-      -- add menu tags (e.g., [Buffer], [LSP])
-      vim_item.menu = ({
-        buffer = "[Buffer]",
-        nvim_lsp = "[LSP]",
-        luasnip = "[LuaSnip]",
-        nvim_lua = "[Lua]",
-        latex_symbols = "[LaTeX]",
-      })[entry.source.name]
-      return vim_item
-    end,
+  snippets = { preset = "luasnip" },
+  signature = { enabled = true, window = { border = "rounded" } },
+  cmdline = { enabled = false },
+  sources = {
+    default = {
+      "lsp",
+      "path",
+      "snippets",
+      "buffer",
+    },
   },
 }
 

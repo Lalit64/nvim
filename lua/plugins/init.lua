@@ -2,27 +2,8 @@ return {
   { lazy = true, "nvim-lua/plenary.nvim" },
 
   {
-    "nvim-tree/nvim-tree.lua",
-    cmd = { "NvimTreeToggle", "NvimTreeFocus" },
-    lazy = false,
-    config = function()
-      require("nvim-tree").setup {
-        disable_netrw = true,
-        hijack_netrw = true,
-        hijack_cursor = true,
-        view = {
-          width = {
-            min = 36,
-            max = 36,
-          },
-        },
-        actions = {
-          open_file = {
-            resize_window = false,
-          },
-        },
-      }
-    end,
+    "nvim-neo-tree/neo-tree.nvim",
+    opts = require "plugins.configs.neo-tree",
   },
 
   {
@@ -63,13 +44,19 @@ return {
 
   {
     "catppuccin/nvim",
+    lazy = false,
     name = "catppuccin",
-    priority = 3000,
     config = function()
       require("catppuccin").setup {
         flavour = "mocha",
         transparent_background = true,
         integrations = {
+          blink_cmp = true,
+          noice = true,
+          snacks = {
+            enabled = true,
+            indent_scope_color = "blue",
+          },
           telescope = {
             enabled = true,
             style = "nvchad",
@@ -81,53 +68,46 @@ return {
     end,
   },
 
-  -- we use cmp plugin only when in insert mode
-  -- so lets lazyload it at InsertEnter event, to know all the events check h-events
-  -- completion , now all of these plugins are dependent on cmp, we load them after cmp
   {
-    "hrsh7th/nvim-cmp",
+    "saghen/blink.cmp",
     event = "InsertEnter",
-    dependencies = {
-      -- cmp sources
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
-      "hrsh7th/cmp-nvim-lsp",
-      "saadparwaiz1/cmp_luasnip",
-      "hrsh7th/cmp-nvim-lua",
-
-      --list of default snippets
-      "rafamadriz/friendly-snippets",
-
-      -- snippets engine
-      {
-        "L3MON4D3/LuaSnip",
-        config = function()
-          require("luasnip.loaders.from_vscode").lazy_load()
-        end,
-      },
-
-      -- autopairs , autocompletes ()[] etc
-      {
-        "windwp/nvim-autopairs",
-        config = function()
-          require("nvim-autopairs").setup()
-
-          local cmp_autopairs = require "nvim-autopairs.completion.cmp"
-          local cmp = require "cmp"
-          cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
-        end,
-      },
-    },
-    -- made opts a function cuz cmp config calls cmp module
-    -- and we lazyloaded cmp so we dont want that file to be read on startup!
+    dependencies = { "rafamadriz/friendly-snippets" },
     opts = require "plugins.configs.cmp",
+  },
+
+  {
+    "L3MON4D3/LuaSnip",
+    config = function()
+      require("luasnip.loaders.from_vscode").lazy_load()
+    end,
+  },
+
+  -- autopairs , autocompletes ()[] etc
+  {
+    "windwp/nvim-autopairs",
+    config = function()
+      require("nvim-autopairs").setup()
+    end,
   },
 
   {
     "echasnovski/mini.surround",
     version = false,
     config = function()
-      require("mini.surround").setup()
+      require("mini.surround").setup {
+        mappings = {
+          add = "za", -- Add surrounding in Normal and Visual modes
+          delete = "zd", -- Delete surrounding
+          find = "zf", -- Find surrounding (to the right)
+          find_left = "zF", -- Find surrounding (to the left)
+          highlight = "zh", -- Highlight surrounding
+          replace = "zr", -- Replace surrounding
+          update_n_lines = "zn", -- Update `n_lines`
+
+          suffix_last = "l", -- Suffix to search with "prev" method
+          suffix_next = "n", -- Suffix to search with "next" method
+        },
+      }
     end,
   },
 
@@ -160,7 +140,7 @@ return {
 
   {
     "stevearc/conform.nvim",
-    lazy = true,
+    lazy = false,
     opts = require "plugins.configs.conform",
   },
 
@@ -209,11 +189,7 @@ return {
 
   {
     "folke/flash.nvim",
-    event = "VeryLazy",
-    config = function()
-      vim.keymap.set("n", "f", "<Nop>", { noremap = true, silent = true })
-      vim.keymap.set("n", "F", "<Nop>", { noremap = true, silent = true })
-    end,
+    event = { "BufReadPre", "BufNewFile" },
     keys = {
       {
         "s",
@@ -248,7 +224,7 @@ return {
         desc = "Treesitter Search",
       },
       {
-        "<c-s>",
+        "<C-s>",
         mode = { "c" },
         function()
           require("flash").toggle()
@@ -256,5 +232,12 @@ return {
         desc = "Toggle Flash Search",
       },
     },
+  },
+
+  {
+    "smjonas/inc-rename.nvim",
+    config = function()
+      require("inc_rename").setup {}
+    end,
   },
 }

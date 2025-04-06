@@ -1,8 +1,13 @@
 local M = {
   open_mapping = [[<C-t>]],
   direction = "float",
+  highlights = {
+    FloatBorder = {
+      guifg = require("catppuccin.palettes").get_palette("mocha").blue,
+    },
+  },
   float_opts = {
-    border = "rounded",
+    border = "curved",
     width = function()
       return math.floor(vim.o.columns * 0.7)
     end,

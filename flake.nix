@@ -47,12 +47,17 @@
               nix-doc
               stdenv.cc.cc
               typescript-language-server
+              vtsls
               lua-language-server
               svelte-language-server
               astro-language-server
               stylua
               ripgrep
               rust-analyzer
+              vscode-langservers-extracted
+              cmake-language-server
+              emmet-language-server
+              gopls
             ];
           };
 
@@ -76,20 +81,21 @@
               conform-nvim
               friendly-snippets
               gitsigns-nvim
+              inc-rename-nvim
               lazydev-nvim
               lualine-nvim
               mini-surround
               noice-nvim
               nui-nvim
               nvim-notify
-              nvim-tree-lua
+              neo-tree-nvim
               {
                 name = "LuaSnip";
                 plugin = luasnip;
               }
               mason-nvim
               nvim-autopairs
-              nvim-cmp
+              blink-cmp
               nvim-lspconfig
               {
                 name = "lspkind";
