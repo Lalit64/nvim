@@ -7,10 +7,10 @@ local M = {
       { icon = " ", key = "w", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
       { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
       {
-        icon = " ",
+        icon = " ",
         key = "c",
         desc = "Config",
-        action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})",
+        action = ":lua Snacks.dashboard.pick('files', { cwd = vim.fn.stdpath('config') })",
       },
       { icon = "󰒲 ", key = "L", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
       { icon = " ", key = "q", desc = "Quit", action = ":qa" },

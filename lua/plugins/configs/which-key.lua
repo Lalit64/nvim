@@ -1,5 +1,5 @@
 local M = {
-  preset = "helix",
+  preset = "modern",
 }
 
 return M
