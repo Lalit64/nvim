@@ -2,7 +2,7 @@ local M = {
   options = {
     theme = "catppuccin",
     globalstatus = vim.o.laststatus == 3,
-    disabled_filetypes = { statusline = { "neo-tree", "snacks_dashboard" } },
+    disabled_filetypes = { statusline = { "NvimTree", "snacks_dashboard" } },
   },
 }
 

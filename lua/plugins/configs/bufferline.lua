@@ -22,7 +22,7 @@ local M = {
     color_icons = true,
     offsets = {
       {
-        filetype = "neo-tree",
+        filetype = "NvimTree",
         text = " Files",
         highlight = "Directory",
         text_align = "left",

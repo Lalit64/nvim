@@ -2,8 +2,27 @@ return {
   { lazy = true, "nvim-lua/plenary.nvim" },
 
   {
-    "nvim-neo-tree/neo-tree.nvim",
-    opts = require "plugins.configs.neo-tree",
+    "nvim-tree/nvim-tree.lua",
+    cmd = { "NvimTreeToggle", "NvimTreeFocus" },
+    lazy = false,
+    config = function()
+      require("nvim-tree").setup {
+        disable_netrw = true,
+        hijack_netrw = true,
+        hijack_cursor = true,
+        view = {
+          width = {
+            min = 36,
+            max = 36,
+          },
+        },
+        actions = {
+          open_file = {
+            resize_window = false,
+          },
+        },
+      }
+    end,
   },
 
   {
@@ -53,6 +72,7 @@ return {
         integrations = {
           blink_cmp = true,
           noice = true,
+          nvimtree = true,
           snacks = {
             enabled = true,
             indent_scope_color = "blue",
@@ -222,14 +242,6 @@ return {
           require("flash").treesitter_search()
         end,
         desc = "Treesitter Search",
-      },
-      {
-        "<C-s>",
-        mode = { "c" },
-        function()
-          require("flash").toggle()
-        end,
-        desc = "Toggle Flash Search",
       },
     },
   },

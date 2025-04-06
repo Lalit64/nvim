@@ -88,7 +88,7 @@
               noice-nvim
               nui-nvim
               nvim-notify
-              neo-tree-nvim
+              nvim-tree-lua
               {
                 name = "LuaSnip";
                 plugin = luasnip;

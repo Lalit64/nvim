@@ -22,13 +22,6 @@ map("n", "<C-k>", "<C-w>k", { desc = "switch window up" })
 
 map("n", "<Esc>", "<cmd>noh<CR>", { desc = "general clear highlights" })
 
-map("n", "<C-s>", "<cmd>w<CR>", { desc = "general save file" })
-map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "general copy whole file" })
-
-map("n", "<leader>n", "<cmd>set nu!<CR>", { desc = "toggle line number" })
-map("n", "<leader>rn", "<cmd>set rnu!<CR>", { desc = "toggle relative number" })
-map("n", "<leader>ch", "<cmd>NvCheatsheet<CR>", { desc = "toggle nvcheatsheet" })
-
 map("n", "<leader>fm", function()
   require("conform").format { lsp_fallback = true }
 end, { desc = "general format file" })
@@ -51,9 +44,10 @@ end, { desc = "buffer close" })
 map("n", "<leader>/", "gcc", { desc = "toggle comment", remap = true })
 map("v", "<leader>/", "gc", { desc = "toggle comment", remap = true })
 
--- neotree
-map("n", "<leader>e", "<cmd>Neotree toggle<CR>", { desc = "nvimtree toggle window" })
-map("n", "<leader>E", "<cmd>Neotree focus<CR>", { desc = "nvimtree focus window" })
+-- nvimtree
+map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree toggle window" })
+map("n", "<leader>E", "<cmd>NvimTreeFocus<CR>", { desc = "nvimtree focus window" })
+map("n", "<leader>re", "<cmd>NvimTreeResize 36<CR>", { desc = "nvimtree resize window" })
 
 -- telescope
 map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", { desc = "telescope live grep" })
