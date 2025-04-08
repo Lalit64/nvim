@@ -72,12 +72,7 @@
                 name = "catppuccin";
                 plugin = catppuccin-nvim;
               }
-              cmp-buffer
-              cmp-nvim-lsp
-              cmp-nvim-lua
               (nvim-treesitter.withPlugins (_: nvim-treesitter.allGrammars))
-              cmp-path
-              cmp_luasnip
               conform-nvim
               friendly-snippets
               gitsigns-nvim
