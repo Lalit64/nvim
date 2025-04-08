@@ -1,5 +1,4 @@
 local M = {
-  -- highlights = require("catppuccin.groups.integrations.bufferline").get {},
   options = {
     close_command = function(n)
       Snacks.bufdelete(n)

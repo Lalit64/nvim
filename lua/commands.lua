@@ -51,4 +51,11 @@ local lualine_setup = function()
   end
 end
 
-return { lualine_setup = lualine_setup() }
+local nvim_web_devicons = function()
+  package.preload["nvim-web-devicons"] = function()
+    require("mini.icons").mock_nvim_web_devicons()
+    return package.loaded["nvim-web-devicons"]
+  end
+end
+
+return { lualine_setup = lualine_setup(), nvim_web_devicons = nvim_web_devicons() }

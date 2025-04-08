@@ -1,4 +1,4 @@
-require("mini.surround").setup {
+local surround = {
   mappings = {
     add = "za", -- Add surrounding in Normal and Visual modes
     delete = "zd", -- Delete surrounding
@@ -13,4 +13,19 @@ require("mini.surround").setup {
   },
 }
 
-require("mini.pairs").setup()
+local pairs = {}
+
+local files = {
+  options = {
+    use_as_default_explorer = true,
+  },
+}
+
+local icons = {}
+
+return {
+  surround = surround,
+  pairs = pairs,
+  files = files,
+  icons = icons,
+}

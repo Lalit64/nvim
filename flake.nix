@@ -65,7 +65,6 @@
             gitPlugins = with pkgs.neovimPlugins; [ ];
             general = with pkgs.vimPlugins; [
               lazy-nvim
-              nvim-web-devicons
               which-key-nvim
               bufferline-nvim
               {
@@ -73,6 +72,7 @@
                 plugin = catppuccin-nvim;
               }
               (nvim-treesitter.withPlugins (_: nvim-treesitter.allGrammars))
+              nvim-tree-lua
               conform-nvim
               friendly-snippets
               gitsigns-nvim
@@ -81,10 +81,10 @@
               lualine-nvim
               mini-surround
               mini-pairs
+              mini-icons
               noice-nvim
               nui-nvim
               nvim-notify
-              nvim-tree-lua
               {
                 name = "LuaSnip";
                 plugin = luasnip;
@@ -92,6 +92,7 @@
               mason-nvim
               blink-cmp
               nvim-lspconfig
+              markdown-preview-nvim
               {
                 name = "lspkind";
                 plugin = lspkind-nvim;

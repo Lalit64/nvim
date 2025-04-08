@@ -1,7 +1,7 @@
 return {
   { lazy = true, "nvim-lua/plenary.nvim" },
 
-  -- file tree
+  -- nvim-tree
   {
     "nvim-tree/nvim-tree.lua",
     cmd = { "NvimTreeToggle", "NvimTreeFocus" },
@@ -25,12 +25,6 @@ return {
     opts = require "plugins.configs.lualine",
   },
 
-  -- icons
-  {
-    "nvim-tree/nvim-web-devicons",
-    opts = {},
-  },
-
   -- syntax highlighting and language features
   {
     "nvim-treesitter/nvim-treesitter",
@@ -43,7 +37,27 @@ return {
     "catppuccin/nvim",
     lazy = false,
     name = "catppuccin",
-    config = require "plugins.configs.catppuccin",
+    config = function()
+      require("catppuccin").setup {
+        flavour = "mocha",
+        transparent_background = true,
+        integrations = {
+          blink_cmp = true,
+          noice = true,
+          nvimtree = true,
+          snacks = {
+            enabled = true,
+            indent_scope_color = "blue",
+          },
+          telescope = {
+            enabled = true,
+            style = "nvchad",
+          },
+        },
+      }
+
+      vim.cmd [[ colorscheme catppuccin ]]
+    end,
   },
 
   -- completion
@@ -60,18 +74,25 @@ return {
     config = require("luasnip.loaders.from_vscode").lazy_load(),
   },
 
-  -- autopairs , autocompletes ()[] etc
-  {
-    "echasnovski/mini.pairs",
-    version = false,
-    config = require "plugins.configs.mini",
-  },
-
   -- surround selection with ""() etc
   {
     "echasnovski/mini.surround",
     version = false,
-    config = require "plugins.configs.mini",
+    opts = require("plugins.configs.mini").surround,
+  },
+
+  -- autopairs , autocompletes ()[] etc
+  {
+    "echasnovski/mini.pairs",
+    version = false,
+    opts = require("plugins.configs.mini").pairs,
+  },
+
+  -- icons
+  {
+    "echasnovski/mini.icons",
+    init = require("commands").nvim_web_devicons,
+    opts = require("plugins.configs.mini").icons,
   },
 
   -- package manager for lsp when not using nix
@@ -161,5 +182,15 @@ return {
   {
     "smjonas/inc-rename.nvim",
     config = require("inc_rename").setup {},
+  },
+
+  -- markdown preview in the browser
+  {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    ft = { "markdown" },
+    build = function()
+      vim.fn["mkdp#util#install"]()
+    end,
   },
 }
