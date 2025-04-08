@@ -13,7 +13,7 @@
   # see :help nixCats.flake.outputs
   outputs =
     {
-      self,
+      # self,
       nixpkgs,
       nixCats,
       ...
@@ -33,13 +33,13 @@
       categoryDefinitions =
         {
           pkgs,
-          settings,
-          categories,
-          extra,
-          name,
-          mkNvimPlugin,
+          # settings,
+          # categories,
+          # extra,
+          # name,
+          # mkNvimPlugin,
           ...
-        }@packageDef:
+        }:
         {
           lspsAndRuntimeDeps = {
             general = with pkgs; [
@@ -62,7 +62,7 @@
           };
 
           startupPlugins = {
-            gitPlugins = with pkgs.neovimPlugins; [ ];
+            # gitPlugins = with pkgs.neovimPlugins; [ ];
             general = with pkgs.vimPlugins; [
               lazy-nvim
               which-key-nvim
@@ -76,7 +76,6 @@
               conform-nvim
               friendly-snippets
               gitsigns-nvim
-              inc-rename-nvim
               lazydev-nvim
               lualine-nvim
               mini-surround
@@ -102,20 +101,19 @@
               snacks-nvim
               telescope-nvim
               telescope-ui-select-nvim
-              toggleterm-nvim
             ];
           };
 
-          optionalPlugins = {
-            gitPlugins = with pkgs.neovimPlugins; [ ];
-            general = with pkgs.vimPlugins; [ ];
-          };
-
-          sharedLibraries = {
-            general = with pkgs; [
-              # libgit2
-            ];
-          };
+          # optionalPlugins = {
+          #   gitPlugins = with pkgs.neovimPlugins; [ ];
+          #   general = with pkgs.vimPlugins; [ ];
+          # };
+          #
+          # sharedLibraries = {
+          #   general = with pkgs; [
+          #     # libgit2
+          #   ];
+          # };
 
           environmentVariables = {
             test = {

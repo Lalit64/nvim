@@ -36,9 +36,10 @@ map("n", "<leader>b", "<cmd>enew<CR>", { desc = "buffer new" })
 map("n", "<tab>", "<cmd>BufferLineCycleNext<cr>", { desc = "buffer goto next" })
 
 map("n", "<S-tab>", "<cmd>BufferLineCyclePrev<cr>", { desc = "buffer goto prev" })
-map("n", "<leader>x", function()
+map("n", "q", function()
   Snacks.bufdelete()
 end, { desc = "buffer close" })
+map("n", "<leader>x", "<cmd>NoiceDismiss<cr>", { desc = "dismiss all notifications" })
 
 -- Comment
 map("n", "<leader>/", "gcc", { desc = "toggle comment", remap = true })
@@ -82,4 +83,6 @@ map("n", "<leader>lg", function()
 end, { desc = "lazygit" })
 
 -- lsp rename
-vim.keymap.set("n", "<leader>rn", "<cmd>IncRename<CR>")
+vim.keymap.set("n", "<leader>rn", function()
+  vim.lsp.buf.rename()
+end)

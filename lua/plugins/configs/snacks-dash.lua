@@ -12,7 +12,7 @@ local M = {
         desc = "Config",
         action = ":lua Snacks.dashboard.pick('files', { cwd = vim.fn.stdpath('config') })",
       },
-      { icon = "󰒲 ", key = "L", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
+      { icon = "󰒲 ", key = "L", desc = "Lazy", action = ":Lazy", enabled = true },
       { icon = " ", key = "q", desc = "Quit", action = ":qa" },
     },
     header = [[

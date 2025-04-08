@@ -10,7 +10,7 @@ local clients_lsp = function()
   for _, client in pairs(clients) do
     table.insert(c, client.name)
   end
-  return " " .. table.concat(c, "|")
+  return " " .. table.concat(c, "|")
 end
 
 local M = {
@@ -46,7 +46,7 @@ local M = {
     lualine_x = {
       {
         "diagnostics",
-        symbols = { error = " ", warn = " ", info = " ", hint = " " },
+        symbols = { error = " ", warn = " ", hint = " ", info = " " },
         update_in_insert = true,
       },
     },
@@ -63,7 +63,6 @@ local M = {
     lualine_y = {},
     lualine_z = { "location" },
   },
-  extensions = { "toggleterm" },
 }
 
 return M

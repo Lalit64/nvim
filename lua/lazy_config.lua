@@ -1,3 +1,5 @@
 return {
-  install = { colorscheme = { "catppuccin" } },
+  ui = {
+    border = "rounded",
+  },
 }

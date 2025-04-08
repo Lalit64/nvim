@@ -155,33 +155,26 @@ return {
       "MunifTanjim/nui.nvim",
       "rcarriga/nvim-notify",
     },
+    init = function()
+      require("notify").setup {
+        background_colour = "#000000",
+      }
+    end,
     opts = require "plugins.configs.noice",
   },
 
   -- utilities via snacks
   {
     "folke/snacks.nvim",
+    lazy = false,
     opts = require "plugins.configs.snacks",
   },
 
-  -- toggleable terminal
-  {
-    "akinsho/toggleterm.nvim",
-    version = "*",
-    opts = require "plugins.configs.toggleterm",
-  },
-
-  -- ⚡flash navigation
+  -- flash navigation
   {
     "folke/flash.nvim",
     event = { "BufReadPre", "BufNewFile" },
     keys = require "plugins.configs.flash",
-  },
-
-  -- inceremental rename
-  {
-    "smjonas/inc-rename.nvim",
-    config = require("inc_rename").setup {},
   },
 
   -- markdown preview in the browser

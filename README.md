@@ -17,6 +17,7 @@ this configuration uses [lazy.nvim](https://github.com/folke/lazy.nvim) to manag
 - :evergreen_tree: [treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - treesitter configurations and abstraction layer for neovim.
 - :cat: [catppuccin-nvim](https://github.com/catppuccin/nvim) - soothing pastel theme for (neo)vim 
 - :eye: [blink.cmp](https://github.com/Saghen/blink.cmp) - a completion plugin for neovim.
+- :popcorn: [snacks.nvim](https://github.com/folke/snacks.nvim) - a collection of QoL plugins for Neovim 
 - :scissors: [luasnip](https://github.com/L3MON4D3/LuaSnip) with [friendly-snippets](https://github.com/rafamadriz/friendly-snippets) - a snippet engine for neovim.
 - :compass: [mini.surround](https://github.com/echasnovski/mini.surround) - neovim Lua plugin with fast and feature-rich surround actions
 - :socks: [mini.pairs](https://github.com/echasnovski/mini.pairs) - neovim Lua plugin to automatically manage character pairs
@@ -28,7 +29,6 @@ this configuration uses [lazy.nvim](https://github.com/folke/lazy.nvim) to manag
 - :scroll: [which-key](https://github.com/folke/which-key.nvim) - a keymap ui for neovim.
 - :collision: [noice](https://github.com/folke/noice.nvim) - highly experimental plugin that completely replaces the ui for messages, cmdline and the popupmenu. 
 - :zap: [flash](https://github.com/folke/flash.nvim) - navigate your code with search labels, enhanced character motions and treesitter integration 
-- :arrows_counterclockwise: [toggleterm](https://github.com/akinsho/toggleterm.nvim) - a neovim lua plugin to help easily manage multiple terminal windows 
 - :arrow_right_hook: [inc-rename](https://github.com/smjonas/inc-rename.nvim) - incremental lsp renaming based on neovim's command-preview feature. 
 
 
