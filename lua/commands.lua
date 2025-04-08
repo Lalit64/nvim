@@ -10,3 +10,33 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     require("conform").format { bufnr = args.buf }
   end,
 })
+
+-- hide diagnostics in insert mode
+vim.api.nvim_create_autocmd("InsertEnter", {
+  pattern = "*",
+  callback = function()
+    vim.diagnostic.config {
+      virtual_text = false,
+    }
+  end,
+})
+vim.api.nvim_create_autocmd("InsertLeave", {
+  pattern = "*",
+  callback = function()
+    vim.diagnostic.config {
+      virtual_text = true,
+    }
+  end,
+})
+
+-- lualine setup
+local lualine_setup = function()
+  vim.g.lualine_laststatus = vim.o.laststatus
+  if vim.fn.argc(-1) > 0 then
+    vim.o.statusline = " "
+  else
+    vim.o.laststatus = 0
+  end
+end
+
+return { lualine_setup = lualine_setup() }

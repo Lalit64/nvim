@@ -85,6 +85,7 @@
               lazydev-nvim
               lualine-nvim
               mini-surround
+              mini-pairs
               noice-nvim
               nui-nvim
               nvim-notify
@@ -94,7 +95,6 @@
                 plugin = luasnip;
               }
               mason-nvim
-              nvim-autopairs
               blink-cmp
               nvim-lspconfig
               {

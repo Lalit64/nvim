@@ -12,6 +12,7 @@ o.clipboard = "unnamedplus"
 o.expandtab = true
 o.shiftwidth = 2
 o.smartindent = true
+o.autoindent = true
 o.tabstop = 2
 o.softtabstop = 2
 
@@ -38,5 +39,3 @@ g.loaded_netrwPlugin = 1
 -- add binaries installed by mason.nvim to path
 local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
 vim.env.PATH = vim.env.PATH .. (is_windows and ";" or ":") .. vim.fn.stdpath "data" .. "/mason/bin"
-
-vim.api.nvim_set_hl(0, "IndentLine", { link = "Comment" })

@@ -16,6 +16,7 @@
     }
 }
 ```
+
 2. Use the home-manager module by including it in the imports like this:
 ```nix
 imports = [
@@ -23,4 +24,6 @@ imports = [
     { neovim.enable = true }
 ];
 ```
+
 Make sure you don't have neovim or vim installed
+
