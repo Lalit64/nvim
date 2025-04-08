@@ -179,6 +179,16 @@ vim.diagnostic.config {
     },
   },
   virtual_text = {
-    prefix = "󱓻 ",
+    prefix = function(diagnostic)
+      if diagnostic.severity == vim.diagnostic.severity.ERROR then
+        return lspsigns.Error .. " "
+      elseif diagnostic.severity == vim.diagnostic.severity.WARN then
+        return lspsigns.Warn .. " "
+      elseif diagnostic.severity == vim.diagnostic.severity.INFO then
+        return lspsigns.Info .. " "
+      else
+        return lspsigns.Hint .. " "
+      end
+    end,
   },
 }

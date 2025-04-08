@@ -20,16 +20,28 @@ vim.api.nvim_create_autocmd("InsertEnter", {
     }
   end,
 })
+local lspsigns = { Error = "", Warn = "", Hint = "", Info = "" }
 vim.api.nvim_create_autocmd("InsertLeave", {
   pattern = "*",
   callback = function()
     vim.diagnostic.config {
-      virtual_text = true,
+      virtual_text = {
+        prefix = function(diagnostic)
+          if diagnostic.severity == vim.diagnostic.severity.ERROR then
+            return lspsigns.Error .. " "
+          elseif diagnostic.severity == vim.diagnostic.severity.WARN then
+            return lspsigns.Warn .. " "
+          elseif diagnostic.severity == vim.diagnostic.severity.INFO then
+            return lspsigns.Info .. " "
+          else
+            return lspsigns.Hint .. " "
+          end
+        end,
+      },
     }
   end,
 })
 
--- lualine setup
 local lualine_setup = function()
   vim.g.lualine_laststatus = vim.o.laststatus
   if vim.fn.argc(-1) > 0 then
