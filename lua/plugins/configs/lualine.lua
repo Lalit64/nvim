@@ -18,7 +18,7 @@ local M = {
     theme = "catppuccin",
     component_separators = "",
     section_separators = { left = "", right = "" },
-    disabled_filetypes = { "NvimTree" },
+    disabled_filetypes = { "NvimTree", "snacks_dashboard" },
   },
   sections = {
     lualine_a = {

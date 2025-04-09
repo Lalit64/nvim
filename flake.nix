@@ -72,6 +72,7 @@
                 plugin = catppuccin-nvim;
               }
               (nvim-treesitter.withPlugins (_: nvim-treesitter.allGrammars))
+              comment-nvim
               nvim-tree-lua
               conform-nvim
               friendly-snippets

@@ -58,4 +58,8 @@ local nvim_web_devicons = function()
   end
 end
 
+vim.api.nvim_create_autocmd("ColorScheme", {
+  command = [[highlight CursorLine guibg=#1D1D2D ]],
+})
+
 return { lualine_setup = lualine_setup(), nvim_web_devicons = nvim_web_devicons() }

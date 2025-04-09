@@ -86,3 +86,8 @@ end, { desc = "lazygit" })
 vim.keymap.set("n", "<leader>rn", function()
   vim.lsp.buf.rename()
 end)
+
+-- snacks toggle terminal
+map({ "n", "t" }, "<C-t>", function()
+  Snacks.terminal.toggle()
+end)

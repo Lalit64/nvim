@@ -5,14 +5,14 @@ local M = {
   view = {
     centralize_selection = true,
     adaptive_size = false,
-    side = "right",
+    side = "left",
     preserve_window_proportions = true,
     float = {
       enable = true,
       open_win_config = function()
         return {
           row = 0,
-          width = 40,
+          width = 42,
           border = "rounded",
           relative = "editor",
           col = vim.o.columns,

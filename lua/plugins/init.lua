@@ -32,6 +32,12 @@ return {
     config = require "plugins.configs.treesitter",
   },
 
+  -- commenting plugin
+  {
+    "numToStr/Comment.nvim",
+    opts = {},
+  },
+
   -- colorscheme
   {
     "catppuccin/nvim",

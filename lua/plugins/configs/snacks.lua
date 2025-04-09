@@ -3,10 +3,12 @@ local M = {
   input = { enabled = true },
   notifier = { enabled = true },
   scope = { enabled = true },
-  scroll = { enabled = true },
   lazygit = { enabled = true },
   statuscolumn = { enabled = true }, -- we set this in options.lua
   words = { enabled = true },
+  scroll = {
+    enabled = false,
+  },
   terminal = {
     enabled = true,
     win = {
@@ -18,11 +20,5 @@ local M = {
   },
   dashboard = require "plugins.configs.snacks-dash",
 }
-
-local map = vim.keymap.set
-
-map({ "n", "t" }, "<C-t>", function()
-  Snacks.terminal.toggle()
-end)
 
 return M
