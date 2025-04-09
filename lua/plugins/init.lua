@@ -143,7 +143,7 @@ return {
   {
     "lewis6991/gitsigns.nvim",
     event = { "BufReadPre", "BufNewFile" },
-    opts = {},
+    opts = require "plugins.configs.gitsigns",
   },
 
   -- whichkey

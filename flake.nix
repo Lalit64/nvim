@@ -51,12 +51,13 @@
               lua-language-server
               svelte-language-server
               astro-language-server
+              tailwindcss-language-server
               stylua
               ripgrep
               rust-analyzer
               vscode-langservers-extracted
               cmake-language-server
-              emmet-language-server
+              emmet-ls
               gopls
             ];
           };

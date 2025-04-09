@@ -60,6 +60,7 @@ local M = {
     menu = {
       scrolloff = 0,
       scrollbar = false,
+      border = "rounded",
       draw = {
         columns = {
           { "label", gap = 10 },
