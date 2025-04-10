@@ -20,7 +20,6 @@ this configuration uses [lazy.nvim](https://github.com/folke/lazy.nvim) to manag
 - :popcorn: [snacks.nvim](https://github.com/folke/snacks.nvim) - a collection of QoL plugins for Neovim 
 - :scissors: [luasnip](https://github.com/L3MON4D3/LuaSnip) with [friendly-snippets](https://github.com/rafamadriz/friendly-snippets) - a snippet engine for neovim.
 - :compass: [mini.surround](https://github.com/echasnovski/mini.surround) - neovim Lua plugin with fast and feature-rich surround actions
-- :socks: [mini.pairs](https://github.com/echasnovski/mini.pairs) - neovim Lua plugin to automatically manage character pairs
 - :hammer: [mini.icons](https://github.com/echasnovski/mini.icons) - icon provider 
 - :desktop_computer: [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) - quickstart configs for nvim lsp
 - :checkered_flag: [conform](https://github.com/stevearc/conform.nvim) - lightweight yet powerful formatter plugin for neovim

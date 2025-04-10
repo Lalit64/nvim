@@ -82,6 +82,7 @@
               lualine-nvim
               mini-surround
               nvim-autopairs
+              nvim-ts-autotag
               mini-icons
               noice-nvim
               nui-nvim
