@@ -15,7 +15,7 @@ end
 
 local M = {
   options = {
-    theme = "catppuccin",
+    theme = "rose-pine",
     component_separators = "",
     section_separators = { left = "", right = "" },
     disabled_filetypes = { "NvimTree", "snacks_dashboard" },

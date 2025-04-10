@@ -69,8 +69,8 @@
               which-key-nvim
               bufferline-nvim
               {
-                name = "catppuccin";
-                plugin = catppuccin-nvim;
+                name = "rose-pine";
+                plugin = rose-pine;
               }
               (nvim-treesitter.withPlugins (_: nvim-treesitter.allGrammars))
               comment-nvim
@@ -94,6 +94,7 @@
               mason-nvim
               blink-cmp
               nvim-lspconfig
+              rustaceanvim
               markdown-preview-nvim
               {
                 name = "lspkind";

@@ -42,29 +42,17 @@ return {
 
   -- colorscheme
   {
-    "catppuccin/nvim",
-    lazy = false,
-    name = "catppuccin",
+    "rose-pine/nvim",
+    name = "rose-pine",
     config = function()
-      require("catppuccin").setup {
-        flavour = "mocha",
-        transparent_background = true,
-        integrations = {
-          blink_cmp = true,
-          noice = true,
-          nvimtree = true,
-          snacks = {
-            enabled = true,
-            indent_scope_color = "blue",
-          },
-          telescope = {
-            enabled = true,
-            style = "nvchad",
-          },
+      require("rose-pine").setup {
+        variant = "base",
+        styles = {
+          transparency = true,
         },
       }
 
-      vim.cmd [[ colorscheme catppuccin ]]
+      vim.cmd "colorscheme rose-pine"
     end,
   },
 
@@ -205,5 +193,11 @@ return {
     build = function()
       vim.fn["mkdp#util#install"]()
     end,
+  },
+
+  {
+    "mrcjkb/rustaceanvim",
+    version = "^6",
+    lazy = false,
   },
 }

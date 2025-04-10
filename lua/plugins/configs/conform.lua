@@ -9,6 +9,7 @@ local M = {
     svelte = { lsp_format = "prefer" },
     css = { "prettier" },
     html = { "prettier" },
+    rust = { "rustfmt" },
   },
 }
 

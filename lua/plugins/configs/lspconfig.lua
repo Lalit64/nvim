@@ -31,7 +31,6 @@ capabilities.textDocument.foldingRange = {
 }
 
 local servers = {
-  rust_analyzer = {},
   astro = {},
   svelte = {},
   pyright = {},
