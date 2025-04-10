@@ -6,7 +6,7 @@ local M = {
     typescript = { "prettier" },
     javascriptreact = { "prettier" },
     typescriptreact = { "prettier" },
-    svelte = { "prettier" },
+    svelte = { lsp_format = "prefer" },
     css = { "prettier" },
     html = { "prettier" },
   },

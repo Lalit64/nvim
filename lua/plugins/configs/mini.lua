@@ -13,8 +13,6 @@ local surround = {
   },
 }
 
-local pairs = {}
-
 local files = {
   options = {
     use_as_default_explorer = true,
@@ -25,7 +23,6 @@ local icons = {}
 
 return {
   surround = surround,
-  pairs = pairs,
   files = files,
   icons = icons,
 }

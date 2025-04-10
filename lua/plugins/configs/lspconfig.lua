@@ -37,7 +37,6 @@ local servers = {
   pyright = {},
   cmake = {},
   cssls = {},
-  emmet_ls = {},
   gopls = {},
   tailwindcss = {},
   html = {},
@@ -122,6 +121,20 @@ servers.vtsls = {
         variableTypes = { enabled = false },
       },
     },
+  },
+}
+
+servers.emmet_language_server = {
+  filetypes = {
+    "css",
+    "html",
+    "javascript",
+    "javascriptreact",
+    "less",
+    "sass",
+    "scss",
+    "typescriptreact",
+    "svelte",
   },
 }
 

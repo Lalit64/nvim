@@ -57,7 +57,7 @@
               rust-analyzer
               vscode-langservers-extracted
               cmake-language-server
-              emmet-ls
+              emmet-language-server
               gopls
             ];
           };
@@ -81,7 +81,7 @@
               lazydev-nvim
               lualine-nvim
               mini-surround
-              mini-pairs
+              nvim-autopairs
               mini-icons
               noice-nvim
               nui-nvim
@@ -99,6 +99,7 @@
                 plugin = lspkind-nvim;
               }
               flash-nvim
+              vim-sleuth
               plenary-nvim
               snacks-nvim
               telescope-nvim

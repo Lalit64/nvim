@@ -32,6 +32,8 @@ return {
     config = require "plugins.configs.treesitter",
   },
 
+  "tpope/vim-sleuth",
+
   -- commenting plugin
   {
     "numToStr/Comment.nvim",
@@ -89,9 +91,9 @@ return {
 
   -- autopairs , autocompletes ()[] etc
   {
-    "echasnovski/mini.pairs",
+    "windwp/nvim-autopairs",
     version = false,
-    opts = require("plugins.configs.mini").pairs,
+    opts = {},
   },
 
   -- icons
