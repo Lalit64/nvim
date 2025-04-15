@@ -2,7 +2,7 @@
 - Minimal neovim config using TinyVim as the base and nixCats for nix and home-manager integration
 - This also contains some of my personal tweaks
 
-![screenshot](https://files.catbox.moe/og74qg.png)
+![screenshot](https://files.catbox.moe/hgjuqx.png)
 
 ## :sparkles: Features
 ### Lazy plugin management

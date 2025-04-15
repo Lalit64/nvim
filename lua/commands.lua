@@ -20,7 +20,7 @@ vim.api.nvim_create_autocmd("InsertEnter", {
     }
   end,
 })
-local lspsigns = { Error = "", Warn = "", Hint = "", Info = "" }
+local lspsigns = { Error = "", Warn = "", Hint = "", Info = "" }
 vim.api.nvim_create_autocmd("InsertLeave", {
   pattern = "*",
   callback = function()

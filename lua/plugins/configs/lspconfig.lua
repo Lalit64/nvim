@@ -39,6 +39,7 @@ local servers = {
   gopls = {},
   tailwindcss = {},
   html = {},
+  jsonls = {},
 }
 
 if require("nixCatsUtils").isNixCats then
@@ -180,7 +181,7 @@ else
   }
 end
 
-local lspsigns = { Error = "", Warn = "", Hint = "", Info = "" }
+local lspsigns = { Error = "", Warn = "", Hint = "", Info = "" }
 vim.diagnostic.config {
   signs = {
     text = {
