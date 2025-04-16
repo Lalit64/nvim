@@ -5,7 +5,6 @@ return {
   {
     "nvim-tree/nvim-tree.lua",
     cmd = { "NvimTreeToggle", "NvimTreeFocus" },
-    lazy = false,
     opts = require "plugins.configs.nvim-tree",
   },
 
@@ -13,7 +12,6 @@ return {
   {
     "akinsho/bufferline.nvim",
     event = "VeryLazy",
-    keys = { { "<leader>bp", "<Cmd>BufferLineTogglePin<CR>", desc = "Toggle Pin" } },
     opts = require "plugins.configs.bufferline",
   },
 
@@ -28,21 +26,26 @@ return {
   -- syntax highlighting and language features
   {
     "nvim-treesitter/nvim-treesitter",
+    event = "VimEnter",
     build = require("nixCatsUtils").lazyAdd ":TSUpdate",
     config = require "plugins.configs.treesitter",
   },
 
-  "tpope/vim-sleuth",
+  {
+    "tpope/vim-sleuth",
+    event = "BufReadPre",
+  },
 
   -- commenting plugin
   {
     "numToStr/Comment.nvim",
-    opts = {},
+    event = "BufReadPre",
   },
 
   -- colorscheme
   {
     "rose-pine/nvim",
+    event = "VimEnter",
     name = "rose-pine",
     config = function()
       require("rose-pine").setup {
@@ -67,25 +70,27 @@ return {
   -- snippets
   {
     "L3MON4D3/LuaSnip",
+    event = "BufReadPre",
     config = require("luasnip.loaders.from_vscode").lazy_load(),
   },
 
   -- surround selection with ""() etc
   {
     "echasnovski/mini.surround",
-    version = false,
+    event = "BufReadPre",
     opts = require("plugins.configs.mini").surround,
   },
 
   -- autopairs , autocompletes ()[] etc
   {
     "windwp/nvim-autopairs",
-    version = false,
+    event = "BufReadPre",
     opts = {},
   },
 
   {
     "windwp/nvim-ts-autotag",
+    event = "BufReadPre",
     opts = {
       opts = {
         -- Defaults
@@ -99,6 +104,7 @@ return {
   -- icons
   {
     "echasnovski/mini.icons",
+    event = "VimEnter",
     init = require("commands").nvim_web_devicons,
     opts = require("plugins.configs.mini").icons,
   },
@@ -130,6 +136,7 @@ return {
   -- formatting using lsp or dedicated formatter
   {
     "stevearc/conform.nvim",
+    event = "BufReadPre",
     lazy = false,
     opts = require "plugins.configs.conform",
   },
@@ -137,6 +144,7 @@ return {
   -- files finder etc
   {
     "nvim-telescope/telescope.nvim",
+    event = "VimEnter",
     cmd = "Telescope",
     opts = require "plugins.configs.telescope",
   },
@@ -174,7 +182,7 @@ return {
   -- utilities via snacks
   {
     "folke/snacks.nvim",
-    lazy = false,
+    event = "VimEnter",
     opts = require "plugins.configs.snacks",
   },
 
@@ -197,7 +205,7 @@ return {
 
   {
     "mrcjkb/rustaceanvim",
+    ft = { "rust" },
     version = "^6",
-    lazy = false,
   },
 }
