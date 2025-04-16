@@ -1,6 +1,5 @@
 local M = {
   preset = "modern",
-  delay = 2,
   icons = {
     mappings = false,
   },

@@ -69,8 +69,8 @@
               which-key-nvim
               bufferline-nvim
               {
-                name = "rose-pine";
-                plugin = rose-pine;
+                name = "catppuccin";
+                plugin = catppuccin-nvim;
               }
               (nvim-treesitter.withPlugins (_: nvim-treesitter.allGrammars))
               comment-nvim

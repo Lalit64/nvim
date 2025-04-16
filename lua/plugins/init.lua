@@ -44,18 +44,29 @@ return {
 
   -- colorscheme
   {
-    "rose-pine/nvim",
+    "catppuccin/nvim",
     event = "VimEnter",
-    name = "rose-pine",
+    name = "catppuccin",
     config = function()
-      require("rose-pine").setup {
-        variant = "base",
-        styles = {
-          transparency = true,
+      require("catppuccin").setup {
+        flavour = "mocha",
+        transparent_background = true,
+        integrations = {
+          blink_cmp = true,
+          noice = true,
+          nvimtree = true,
+          snacks = {
+            enabled = true,
+            indent_scope_color = "blue",
+          },
+          telescope = {
+            enabled = true,
+            style = "nvchad",
+          },
         },
       }
 
-      vim.cmd "colorscheme rose-pine"
+      vim.cmd.colorscheme "catppuccin"
     end,
   },
 
