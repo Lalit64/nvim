@@ -1,9 +1,10 @@
-require "options"
-require "mappings"
-require "commands"
+if vim.loader then
+  vim.loader.enable()
+end
 
--- bootstrap plugins & lazy.nvim
-local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim" -- path where its going to be installed
+require("opts").initial()
+
+local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system {
@@ -23,5 +24,5 @@ local plugins = require "plugins"
 require("nixCatsUtils.lazyCat").setup(
   nixCats.pawsible { "allPlugins", "start", "lazy.nvim" },
   plugins,
-  require "lazy_config"
+  require "lazy_spec"
 )

@@ -80,10 +80,9 @@
               gitsigns-nvim
               lazydev-nvim
               lualine-nvim
-              mini-surround
               nvim-autopairs
               nvim-ts-autotag
-              mini-icons
+              mini-nvim
               noice-nvim
               nui-nvim
               nvim-notify
@@ -113,12 +112,13 @@
           #   gitPlugins = with pkgs.neovimPlugins; [ ];
           #   general = with pkgs.vimPlugins; [ ];
           # };
-          #
-          # sharedLibraries = {
-          #   general = with pkgs; [
-          #     # libgit2
-          #   ];
-          # };
+
+          sharedLibraries = {
+            general = with pkgs; [
+              lazygit
+
+            ];
+          };
 
           environmentVariables = {
             test = {

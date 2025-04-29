@@ -1,76 +1,79 @@
-local map = vim.keymap.set
+local function map(mode, keys, action, desc, remap)
+  desc = desc or " "
+  remap = remap or false
+  local opts = { noremap = true, silent = true, desc = desc, remap = remap }
+  vim.keymap.set(mode, keys, action, opts)
+end
 
--- disable arrow keys
-vim.cmd [[
-  map <Up> <Nop>
-  map <Left> <Nop>
-  map <Right> <Nop>
-  map <Down> <Nop>
-]]
+local M = {}
 
-map("i", "<C-b>", "<ESC>^i", { desc = "move beginning of line" })
-map("i", "<C-e>", "<End>", { desc = "move end of line" })
-map("i", "<C-h>", "<Left>", { desc = "move left" })
-map("i", "<C-l>", "<Right>", { desc = "move right" })
-map("i", "<C-j>", "<Down>", { desc = "move down" })
-map("i", "<C-k>", "<Up>", { desc = "move up" })
+M.general = function()
+  map("n", "<Up>", "<Nop>")
+  map("n", "<Left>", "<Nop>")
+  map("n", "<Right>", "<Nop>")
+  map("n", "<Down>", "<Nop>")
 
-map("n", "<C-h>", "<C-w>h", { desc = "switch window left" })
-map("n", "<C-l>", "<C-w>l", { desc = "switch window right" })
-map("n", "<C-j>", "<C-w>j", { desc = "switch window down" })
-map("n", "<C-k>", "<C-w>k", { desc = "switch window up" })
+  map("i", "<C-b>", "<ESC>^i", "move beginning of line")
+  map("i", "<C-e>", "<End>", "move end of line")
+  map("i", "<C-h>", "<Left>", "move left")
+  map("i", "<C-l>", "<Right>", "move right")
+  map("i", "<C-j>", "<Down>", "move down")
+  map("i", "<C-k>", "<Up>", "move up")
 
-map("n", "<Esc>", "<cmd>noh<CR>", { desc = "general clear highlights" })
+  map("n", "<C-h>", "<C-w>h", "switch window left")
+  map("n", "<C-l>", "<C-w>l", "switch window right")
+  map("n", "<C-j>", "<C-w>j", "switch window down")
+  map("n", "<C-k>", "<C-w>k", "switch window up")
 
-map("n", "<leader>fm", function()
-  require("conform").format { lsp_fallback = true }
-end, { desc = "[F]ormat File" })
+  map("n", "<Esc>", "<cmd>noh<CR>", "general clear highlights")
 
--- global lsp mappings
-map("n", "<leader>cs", vim.diagnostic.setloclist, { desc = "[C]ode Locli[S]t" })
-map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "[C]ode [A]ction" })
-map("n", "gD", vim.lsp.buf.declaration, { desc = "[G]oto [D]eclaration" })
-map("n", "gd", vim.lsp.buf.definition, { desc = "[G]oto [D]efinition" })
+  map("n", "<leader>/", "gcc", "Toggle Comment", true)
+  map("v", "<leader>/", "gc", "Toggle Comment", true)
+end
 
--- tabufline
-map("n", "<leader>b", "<cmd>enew<CR>", { desc = "New buffer" })
+M.misc = function()
+  map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", "NvimTree Toggle")
+  map("n", "<leader>re", "<cmd>NvimTreeResize 36<CR>", "NvimTree Resize")
 
-map("n", "<tab>", "<cmd>BufferLineCycleNext<cr>", { desc = "Go to next buffer" })
+  map("n", "<leader>lg", function()
+    Snacks.lazygit.open()
+  end, "[L]azy[G]it")
+  map({ "n", "t" }, "<C-t>", function()
+    Snacks.terminal.toggle()
+  end, "Terminal")
+end
 
-map("n", "<S-tab>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Go to prev buffer" })
-map("n", "q", function()
-  Snacks.bufdelete()
-end, { desc = "Close buffer" })
-map("n", "<leader>x", "<cmd>NoiceDismiss<cr>", { desc = "Noice Dismiss" })
+M.bufferline = function()
+  map("n", "<leader>b", "<cmd>enew<CR>", "New buffer")
+  map("n", "<tab>", "<cmd>BufferLineCycleNext<cr>", "Go to next buffer")
+  map("n", "<S-tab>", "<cmd>BufferLineCyclePrev<cr>", "Go to prev buffer")
+  map("n", "q", function()
+    Snacks.bufdelete()
+  end, "Close buffer")
+  map("n", "<leader>x", "<cmd>NoiceDismiss<cr>", "Noice Dismiss")
+end
 
--- Comment
-map("n", "<leader>/", "gcc", { desc = "Toggle Comment", remap = true })
-map("v", "<leader>/", "gc", { desc = "Toggle Comment", remap = true })
+M.telescope = function()
+  local builtin = require "telescope.builtin"
+  map("n", "<leader>fh", builtin.help_tags, "[F]ind [H]elp")
+  map("n", "<leader>fk", builtin.keymaps, "[F]ind [K]eymaps")
+  map("n", "<leader>ff", builtin.find_files, "[F]ind [F]iles")
+  map("n", "<leader>ft", builtin.builtin, "[F]ind [S]elect Telescope")
+  map("n", "<leader>fw", builtin.live_grep, "[F]ind [W]ords")
+  map("n", "<leader>fd", builtin.diagnostics, "[F]ind [D]iagnostics")
+  map("n", "<leader>fr", builtin.resume, "[F]ind [R]esume")
+  map("n", "<leader>f.", builtin.oldfiles, '[F]ind Recent Files ("." for repeat)')
+end
 
--- nvimtree
-map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "NvimTree Toggle" })
-map("n", "<leader>re", "<cmd>NvimTreeResize 36<CR>", { desc = "NvimTree Resize" })
+M.lsp = function()
+  map("n", "<leader>cs", vim.diagnostic.setloclist, "[C]ode locli[s]t")
+  map("n", "<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+  map("n", "gd", vim.lsp.buf.declaration, "[g]oto [d]eclaration")
+  map("n", "gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
 
--- telescope
-local builtin = require "telescope.builtin"
-vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "[F]ind [H]elp" })
-vim.keymap.set("n", "<leader>fk", builtin.keymaps, { desc = "[F]ind [K]eymaps" })
-vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "[F]ind [F]iles" })
-vim.keymap.set("n", "<leader>ft", builtin.builtin, { desc = "[F]ind [S]elect Telescope" })
-vim.keymap.set("n", "<leader>fw", builtin.live_grep, { desc = "[F]ind [W]ords" })
-vim.keymap.set("n", "<leader>fd", builtin.diagnostics, { desc = "[F]ind [D]iagnostics" })
-vim.keymap.set("n", "<leader>fr", builtin.resume, { desc = "[F]ind [R]esume" })
-vim.keymap.set("n", "<leader>f.", builtin.oldfiles, { desc = '[F]ind Recent Files ("." for repeat)' })
+  map("n", "<leader>fm", function()
+    require("conform").format { lsp_fallback = true }
+  end, "[F]or[m]at File")
+end
 
--- snacks.nvim lazygit
-map("n", "<leader>lg", function()
-  Snacks.lazygit.open()
-end, { desc = "[L]azy[G]it" })
-
--- lsp rename
-vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "LSP [R]e[N]ame" })
-
--- snacks toggle terminal
-map({ "n", "t" }, "<C-t>", function()
-  Snacks.terminal.toggle()
-end)
+return M
