@@ -98,6 +98,7 @@ return {
     event = "VeryLazy",
     dir = conf_path,
     config = function()
+      require("plugins.scrollEOF").setup {}
       require("opts").final()
       require("mappings").general()
       require("mappings").misc()

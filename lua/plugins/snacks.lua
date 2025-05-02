@@ -14,7 +14,7 @@ return {
       statuscolumn = { enabled = true }, -- we set this in options.lua
       words = { enabled = true },
       scroll = {
-        enabled = false,
+        enabled = true,
       },
       terminal = {
         enabled = true,
