@@ -1,7 +1,7 @@
-local function map(mode, keys, action, desc, remap)
+local function map(mode, keys, action, desc, isRemap)
   desc = desc or " "
   remap = remap or false
-  local opts = { noremap = true, silent = true, desc = desc, remap = remap }
+  local opts = { noremap = true, silent = true, desc = desc, remap = isRemap }
   vim.keymap.set(mode, keys, action, opts)
 end
 
@@ -66,7 +66,7 @@ M.telescope = function()
 end
 
 M.lsp = function()
-  map("n", "<leader>cs", vim.diagnostic.setloclist, "[C]ode locli[s]t")
+  map("n", "<leader>ct", "<cmd>Trouble diagnostics toggle filter.buf=0<CR>", "[C]ode [T]rouble diagnostics")
   map("n", "<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
   map("n", "gd", vim.lsp.buf.declaration, "[g]oto [d]eclaration")
   map("n", "gd", vim.lsp.buf.definition, "[G]oto [D]efinition")

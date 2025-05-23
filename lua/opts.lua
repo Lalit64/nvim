@@ -28,6 +28,7 @@ opts.initial = function()
   opt.splitbelow = true
   opt.splitright = true
   opt.termguicolors = true
+  vim.o.updatetime = 500
   opt.timeoutlen = 400
   opt.undofile = true
   opt.cursorline = true
@@ -51,23 +52,7 @@ opts.final = function()
     end,
   })
 
-  -- hide diagnostics in insert mode
-  vim.api.nvim_create_autocmd("InsertEnter", {
-    pattern = "*",
-    callback = function()
-      vim.diagnostic.config {
-        virtual_text = false,
-      }
-    end,
-  })
   vim.diagnostic.config {
-    virtual_text = {
-      prefix = "",
-      suffix = "",
-      format = function(diagnostic)
-        return " " .. diagnostic.message .. " "
-      end,
-    },
     underline = {
       severity = { min = vim.diagnostic.severity.WARN },
     },
@@ -80,6 +65,56 @@ opts.final = function()
       },
     },
   }
+
+  -- auto indent on <tab>
+  vim.keymap.set("i", "<tab>", function()
+    local _, col = unpack(vim.api.nvim_win_get_cursor(0))
+    local line = vim.api.nvim_get_current_line()
+
+    -- this assume that "!^F" is in the "indentkeys" option
+    if vim.o.indentexpr ~= "" and col == 0 and line:match "^%s*$" then
+      local ctrl_f = vim.api.nvim_replace_termcodes("<c-f>", true, false, true)
+      vim.api.nvim_feedkeys(ctrl_f, "n", false)
+    else
+      local tab = vim.api.nvim_replace_termcodes("<tab>", true, false, true)
+      vim.api.nvim_feedkeys(tab, "n", false)
+    end
+  end)
+
+  vim.api.nvim_command "highlight! NormalFloat guibg=#1D1D2D"
+  vim.api.nvim_command "highlight! FloatBorder guibg=#1D1D2D"
+
+  -- Define a custom namespace for diagnostics styling
+  local diagnostic_ns = vim.api.nvim_create_namespace "DiagnosticFloat"
+
+  -- Define a custom highlight group just for diagnostics float
+  vim.api.nvim_set_hl(0, "DiagnosticNormalFloat", { bg = "NONE" })
+  vim.api.nvim_set_hl(0, "DiagnosticFloatBorder", { fg = "#89b4fa" })
+
+  -- Function to show diagnostic float with custom highlights
+  local function show_custom_diagnostic_float()
+    local opts = {
+      focusable = false,
+      source = "if_many",
+      border = "rounded",
+    }
+
+    -- Temporarily override NormalFloat and FloatBorder just for this window
+    vim.diagnostic.open_float(nil, opts)
+
+    -- Get the most recent float window
+    local float_win = vim.api.nvim_get_current_win()
+    vim.api.nvim_set_option_value(
+      "winhl",
+      "NormalFloat:DiagnosticNormalFloat,FloatBorder:DiagnosticFloatBorder",
+      { win = float_win }
+    )
+  end
+
+  -- Create autocommand to trigger on CursorHold
+  vim.api.nvim_create_autocmd("CursorHold", {
+    callback = show_custom_diagnostic_float,
+  })
 
   -- add binaries installed by mason.nvim to path
   local is_windows = vim.loop.os_uname().sysname == "Windows_NT"

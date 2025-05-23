@@ -40,4 +40,22 @@ return {
       vim.cmd.colorscheme "catppuccin"
     end,
   },
+  -- {
+  --   "rose-pine/neovim",
+  --   name = "rose-pine",
+  --   config = function()
+  --     require("rose-pine").setup {
+  --       variant = "main",
+  --       styles = {
+  --         transparency = true,
+  --       },
+  --     }
+  --
+  --     vim.api.nvim_create_autocmd("ColorScheme", {
+  --       command = [[highlight CursorLine guibg=#0A0A11]],
+  --     })
+  --
+  --     vim.cmd.colorscheme "rose-pine"
+  --   end,
+  -- },
 }

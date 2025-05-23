@@ -72,6 +72,10 @@
                 name = "catppuccin";
                 plugin = catppuccin-nvim;
               }
+              {
+                name = "rose-pine";
+                plugin = rose-pine;
+              }
               (nvim-treesitter.withPlugins (_: nvim-treesitter.allGrammars))
               comment-nvim
               nvim-tree-lua
@@ -82,6 +86,7 @@
               lualine-nvim
               nvim-autopairs
               nvim-ts-autotag
+              nvim-ts-context-commentstring
               mini-nvim
               noice-nvim
               nui-nvim
@@ -105,6 +110,8 @@
               snacks-nvim
               telescope-nvim
               telescope-ui-select-nvim
+              trouble-nvim
+              todo-comments-nvim
             ];
           };
 

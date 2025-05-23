@@ -186,13 +186,6 @@ return {
       end
 
       vim.diagnostic.config {
-        virtual_text = {
-          prefix = "",
-          suffix = "",
-          format = function(diagnostic)
-            return " " .. diagnostic.message .. " "
-          end,
-        },
         underline = {
           severity = { min = vim.diagnostic.severity.WARN },
         },
@@ -227,6 +220,17 @@ return {
         rust = { "rustfmt" },
       },
     },
+  },
+
+  {
+    "folke/trouble.nvim",
+    dependencies = {
+      "folke/todo-comments.nvim",
+    },
+    opts = {
+      focus = true,
+    },
+    command = "Trouble",
   },
 
   {
