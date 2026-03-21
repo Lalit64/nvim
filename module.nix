@@ -50,7 +50,6 @@ in {
         nvim-tree-lua
         mini-icons
 
-        tabout-nvim
         blink-pairs
         mini-surround
 

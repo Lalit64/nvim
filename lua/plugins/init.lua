@@ -3,13 +3,6 @@ return {
     "plenary.nvim",
   },
   {
-    "tabout.nvim",
-    event = { "DeferredUIEnter" },
-    after = function(_)
-      require("tabout").setup {}
-    end,
-  },
-  {
     "auto-indent.nvim",
     event = { "DeferredUIEnter" },
     after = function(_)
